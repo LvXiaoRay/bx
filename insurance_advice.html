@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  
+  <link href="jquery.mobile/jquery.mobile-1.4.5.css" rel="stylesheet" type="text/css">
+  
+  <script type="text/javascript" src="jquery.mobile/jquery-1.12.2.min.js"></script>
+    
+<script type="text/javascript" src="jquery.mobile/jquery.mobile-1.4.5.js"></script>
+   
+ <title>投保咨询</title>
+  
+  <script>
+    function function1(){
+   document.getElementById("content_us").src="connect_me.html"
+      }
+     function function2(){
+   document.getElementById("content_us").src="index.html"
+      }
+  </script>  
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+
+</head>
+
+<body>
+<!--导航栏-->
+<div data-role="header" data-position="fixed" >
+   
+ <a data-ajax="false" href="shouye.html">返回</a>
+    
+<h1>投保咨询</h1>
+</div>
+
+<table id="insurance_advice_title" height="50px" cellspacing="0px">
+ 
+   
+<tr>
+    
+    <td > <button id="contact_online" onclick="function1()">在线咨询</button></td>
+     
+   <td ><button id="contact_online" onclick="function2()">意见反馈</button></td>
+    </tr>
+</table>
+
+
+    <iframe id="content_us" style="width:100%;height:550px" src="connect_me.html"></iframe>
+</body>
+</html>

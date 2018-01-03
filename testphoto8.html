@@ -1,0 +1,271 @@
+﻿<!DOCTYPE html>    
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link href="jquery.mobile/jquery.mobile-1.4.5.css" rel="stylesheet" type="text/css">
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/default.css">
+    <link href="css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+    <script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.0.min.js"><\/script>')</script>
+    <script src="js/fileinput.js" type="text/javascript"></script>
+    <!--简体中文-->
+    <script src="js/locales/zh.js" type="text/javascript"></script>
+    <!--繁体中文-->
+    <script src="js/locales/zh-TW.js" type="text/javascript"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="jquery.mobile/jquery-1.12.2.min.js"></script>
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script src="http://www.jq22.com/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script src="js/IMGUP.js"></script>
+    <link href="css/IMGUP.css" rel="stylesheet" />
+    <script type="text/javascript" src="jquery.mobile/jquery.mobile-1.4.5.js"></script>
+    <link rel="stylesheet" href="control/css/zyUpload.css" type="text/css">
+
+    <script type="text/javascript" src="jquery-1.7.2.js"></script>
+    <!-- 引用核心层插件 -->
+    <script type="text/javascript" src="core/zyFile.js"></script>
+    <!-- 引用控制层插件 -->
+    <script type="text/javascript" src="control/js/zyUpload.js"></script>
+    <!-- 引用初始化JS -->
+    <script type="text/javascript" src="demo.js"></script>
+    <link rel="stylesheet" href="css/simpleAlert.css">
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/simpleAlert.js"></script>
+    <script>
+        $(function () {
+            //单次单选弹框
+            $("#onlyChoseAlert").click(function () {
+                var onlyChoseAlert = simpleAlert({
+                    "content":"请确定是否继续上传!",
+                    "buttons":{
+                        "确定":function () {
+                            onlyChoseAlert.close();
+                        }
+                    }
+                })
+            })
+            //单次双选弹框
+            $("#dblChoseAlert").click(function () {
+                var dblChoseAlert = simpleAlert({
+                    "content":"请确定是否继续上传!",
+                    "buttons":{
+                        "确定":function () {
+                            alert("上传成功");
+                            dblChoseAlert.close();
+                            window.location.href="zizhu_lipei.html"
+                        },
+                        "取消":function () {
+                            dblChoseAlert.close();
+                        }
+                    }
+                })
+            })
+            //多次双选弹框
+            $("#manyChoseAlert").click(function () {
+                var manyChoseAlert = simpleAlert({
+                    "content":"按确定键按确定键按确定键按确定键按确定键按确定键按确定键按确定键按确定键按确定键按确定键按确定键按确定键!",
+                    "buttons":{
+                        "确定":function () {
+                            var manyChoseAlert2 = simpleAlert({
+                                "content":"再次确定!",
+                                "buttons":{
+                                    "确定":function () {
+                                        var manyChoseAlert3 = simpleAlert({
+                                            "content":"最后确定!",
+                                            "buttons":{
+                                                "确定":function () {
+                                                    manyChoseAlert3.close();
+                                                }
+                                            }
+                                        })
+                                    },
+                                    "取消":function () {
+                                        manyChoseAlert2.close();
+                                    }
+                                }
+                            })
+                        },
+                        "取消":function () {
+                            manyChoseAlert.close();
+                        }
+                    }
+                })
+            })
+            //多次双选弹框全关闭
+            $("#manyAllChoseAlert").click(function () {
+                var manyAllChoseAlert = simpleAlert({
+                    "content":"按确定键!",
+                    "buttons":{
+                        "确定":function () {
+                            var manyAllChoseAlert2 = simpleAlert({
+                                "content":"再次确定!",
+                                "buttons":{
+                                    "确定":function () {
+                                        var manyAllChoseAlert3 = simpleAlert({
+                                            "content":"最后确定－全关闭!",
+                                            "closeAll":true,
+                                            "buttons":{
+                                                "确定":function () {
+                                                    manyAllChoseAlert3.close();
+                                                }
+                                            }
+                                        })
+                                    },
+                                    "取消":function () {
+                                        manyAllChoseAlert2.close();
+                                    }
+                                }
+                            })
+                        },
+                        "取消":function () {
+                            manyAllChoseAlert.close();
+                        }
+                    }
+                })
+            })
+        })
+    </script>
+    <script type="text/javascript">
+
+    </script>
+</head>
+
+<body>
+<div data-role="page">
+    <div data-role="header"  >
+        <a data-ajax="false" href="zizhu_lipei.html">返回</a>
+        <h1>影像信息</h1>    
+        
+    </div>
+        <ul data-role="listview" style="margin-top:0px;">
+          
+           
+        <li><p>被保险人身份证正反面</p>
+             <form action=""> <p>正面</p>
+               <input type="file" name="imgOne2" id="imgOne8_1_1" onchange="preImg(this.id,'imgPre8_1_1');" />
+                <img id="imgPre8_1_1" src="" style="data-inline:true;display: block;height:40px;width:40px" />
+             </form><p>反面</p>
+               <form action="">  
+               <input type="file" name="imgOne8" id="imgOne8_1_2" onchange="preImg(this.id,'imgPre8_1_2');" />
+                <img id="imgPre8_1_2" src="" style="data-inline:true;display: block;height:40px;width:40px" />
+             </form>
+          </li> 
+           <li><p>被保险人的存折/银行卡</p>
+             <form action="">  
+               <input type="file" name="imgOne" id="imgOne8_1_3" onchange="preImg(this.id,'imgPre8_1_3');" />
+                <img id="imgPre8_1_3" src="" style="data-inline:true;display: block;height:40px;width:40px" />
+             </form>
+          </li> 
+   
+          
+           
+        <li><p>意外事故证明（单位出具）</p>
+             <form action="">  
+               <input type="file" name="imgOne3" id="imgOne8_1_4" onchange="preImg(this.id,'imgPre8_1_4');" />
+                <img id="imgPre8_1_4" src="" style="data-inline:true;display: block;height:40px;width:40px" />
+             </form>
+          </li> 
+ 
+         
+       
+     
+        <li><p>诊断证明</p>
+             <form action="">  
+               <input type="file" name="imgOne6" id="imgOne8_1_5" onchange="preImg(this.id,'imgPre8_1_5');" />
+                <img id="imgPre8_1_5" src="" style="data-inline:true;display: block;height:40px;width:40px" />
+             </form>
+          </li> 
+           
+<li><p>医疗费用原始数据</p>
+             <form action="">  
+               <input type="file" name="imgOne9" id="imgOne8_1_6" onchange="preImg(this.id,'imgPre8_1_6');" />
+                <img id="imgPre8_1_6" src="" style="data-inline:true;display: block;height:40px;width:40px" />
+             </form>
+          </li> 
+    <li><p>住院病历</p>
+             <form action=""> 
+               <input type="file" name="imgOne10" id="imgOne8_1_7" onchange="preImg(this.id,'imgPre8_1_7');" />
+                <img id="imgPre8_1_7" src="" style="data-inline:true;display: block;height:40px;width:40px" />
+             </form>
+          </li> 
+           <li><p>住院费用结算单及费用清单</p>
+          </form>
+                <form action=""> 
+               <input type="file" name="imgOne11" id="imgOne8_1_8" onchange="preImg(this.id,'imgPre8_1_8');" />
+                <img id="imgPre8_1_8" src="" style="data-inline:true;display: block;height:40px;width:40px" />
+             </form>
+          </li>
+        </ul>
+    <button id="testpt888" onclick="tijiao8()"><a href="#">提交资料</a></button>
+</div>
+<script type="text/javascript">
+    function preImg(sourceId, targetId) {
+        if (typeof FileReader === 'undefined') {
+            alert('格式错误');
+            return;
+        }
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            var img = document.getElementById(targetId);
+            img.src = this.result;
+        }
+        reader.readAsDataURL(document.getElementById(sourceId).files[0]);
+    }
+</script>
+<script>
+    function tijiao8() {
+        var length811=$("#imgOne8_1_1").val();
+        var length812=$("#imgOne8_1_2").val();
+        var length813=$("#imgOne8_1_3").val();
+        var length814=$("#imgOne8_1_4").val();
+        var length815=$("#imgOne8_1_5").val();
+        var length816=$("#imgOne8_1_6").val();
+        var length817=$("#imgOne8_1_7").val();
+        var length818=$("#imgOne8_1_8").val();
+
+        if(length811&&length812&&length813&&length814&&length815&&length816&&length817&&length818) {
+
+            var dblChoseAlert8 = simpleAlert({
+
+                "content": "请确定是否继续上传!",
+                "buttons": {
+                    "确定": function () {
+                        alert("上传成功");
+                        dblChoseAlert8.close();
+                        window.location.href = "zizhu_lipei.html"
+                    },
+                    "取消": function () {
+                        dblChoseAlert8.close();
+                    }
+                }
+            });
+            var dblChoseAlert08 = simpleAlert({
+
+                "content": "是否选择交割单!",
+                "buttons": {
+                    "是": function () {
+                        dblChoseAlert08.close();
+                        return 1;
+
+                    },
+                    "否": function () {
+                        dblChoseAlert08.close();
+                        return 0;
+                    }
+                }
+            });
+        }
+
+
+        else {alert("请提交完整的资料！");}
+
+    }
+</script>
+</body>
+
+</html> 

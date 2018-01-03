@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>账号信息</title>
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link href="jquery.mobile/jquery.mobile-1.4.5.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="jquery.mobile/jquery-1.12.2.min.js"></script>
+    <script type="text/javascript" src="jquery.mobile/jquery.mobile-1.4.5.js"></script>
+
+    <style type="text/css">
+        /*自定义样式*/
+        body,html{
+            margin: 0;
+            padding: 0;
+        }
+        .select-value,.select-value2{
+            width: 80%;
+            height: 30px;
+            border:1px solid #ccc;
+        }
+        p{
+            margin:0;
+            padding:0;
+        }
+        .slide-wapper {
+            padding:20px;
+            overflow-y: scroll;
+            background: #eee;
+        }
+        .title{
+            padding-top:30px;
+            padding-bottom:10px;
+            color:#333;
+        }
+        .title2{
+            padding-top:20px;
+            font-size: 22px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+<div data-role="header" >
+    <a data-ajax="false" href="test-shenqing2.html">返回</a>
+    <h1>银行信息</h1>  </div>
+<ul data-role="listview" style="margin-top:0px;">
+    <li style="float:left;display:inline;width:20%;height:30px"><p ><font size="1px">账户名：</font></p>
+    </li>
+    <li style="width:fill-present;height:30px"><p id="application_name"> </p>
+    </li>
+    <li style="float:left;display:inline;width:20%;height:30px"><p><font size="1px">银行账号：</font></p>
+    </li>
+    <li style="width:fill-present;height:30px"><p id="application_account_num"></p>
+    </li>
+
+    <li style="float:left;display:inline;width:20%;height:40px"><p><font size="1px">开户城市：</font><p/>
+    </li>
+    <li style="width:fill-present;height:40px">
+
+        <input type="text" class="select-value" id="city_bank" value="点击选择城市">
+    </li>
+    <li style="float:left;display:inline;width:20%;height:40px">
+        <p><font size="1px">开户银行：</font></p>
+
+    </li>
+    <li style="width:fill-present;height:40px">
+
+        <p id="application_bank"> </p>
+
+    </li>
+    <li data-role="fieldcontain">
+        <button onclick="tz()">立即申请</button>
+    </li>
+</ul>
+
+<script src="js/index.js"></script>
+<script>
+
+    var account_own=document.getElementById("application_name");
+    var bank_num=document.getElementById("application_account_num");
+    var bank_name=document.getElementById("application_bank");
+    account_own.innerHTML=localStorage.getItem("application_name");
+    bank_num.innerHTML=localStorage.getItem("application_account_num");
+    bank_name.innerHTML=localStorage.getItem("application_bank");
+    function tz(){
+        if( document.getElementById("city_bank").value=="点击选择城市")
+            alert("您还没有选择城市！")
+
+
+        else {
+            localStorage.setItem("city_bank",document.getElementById("city_bank").value);
+                window.location.href="testphoto2.html";
+
+        }
+
+
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+<meta charset="UTF-8">
+    
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+   <link href="jquery.mobile/jquery.mobile-1.4.5.css" rel="stylesheet" type="text/css">
+   
+ <script type="text/javascript" src="jquery.mobile/jquery-1.12.2.min.js"></script>
+   
+ <script type="text/javascript" src="jquery.mobile/jquery.mobile-1.4.5.js"></script>
+    <script src="js/lib.js"></script>
+
+<title>联系人</title>
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+
+</head>
+
+<body>
+
+   
+ <!--导航栏-->
+    <div data-role="header"  >
+       
+ <a data-ajax="false" href="personal_info.html">返回</a>
+     
+   <h1>联系人</h1>
+    </div>
+
+  
+  <ul data-role="listview" data-inset="true" id="contact_list" style="margin-top: 8px">
+       
+
+    </ul>
+
+   
+ <table style="width: 100% ;margin-top:0px" >
+     <tr >
+         <td >  <a  data-ajax="false"  href="add_contact.html">
+             <input type="button" style="display: inline;width: 50%" value="添加联系人"></a>
+         </td>
+
+     </tr>
+
+ </table>
+
+
+
+
+<script>
+    var LXR_list=document.getElementById("contact_list");
+    _get('/app/user/contact/', {
+    }).then(function(data) {
+        if(data.data.count==0){
+
+            alert("没有常用联系人！")
+        }
+        else{
+            var str="";
+            localStorage.setItem("contact_num",data.data.count);
+            for(var num=0;num<data.data.count;num++){
+                str+='<li style="padding-left: 20px;padding-top:0px;padding-left:5px;background-color: #ffffff;height: 46px" ><p style="margin-bottom: 6px">'+data.data.list[num].name+'</p><p>'+data.data.list[num].contact_id+'</p><br/></li>'
+               // str+='<li> <label ><input name="Fruit" style="display: inline" id="id_name'+num+'" type="radio" value="'+(num+1)+'"/>' +
+                //    '<p >'+data.data.list[num].name+'</p>' +
+               //     '<p id="id_num'+num+'"  style="font-size:10px">'+data.data.list[num].contact_id+'</p>' +
+                //    '</label></li><br>'
+            }
+            document.getElementById("contact_list").innerHTML=str;
+
+            var LI=document.getElementsByTagName("li");
+            for(i=0;i<LI.length;i++) {
+                LI[i].onclick = (function (j) {
+                    return function(){
+                        localStorage.setItem("contact_ID_No", data.data.list[j].contact_id)
+                        window.location.href="contact_delete_alter.html"
+                    };
+                })(i);
+            }
+
+        }
+    }).fail(function(data){
+
+        alert('无法连接网络！')});
+
+   function check_contact() {
+
+
+       if(localStorage.getItem("contact_num")==0){
+           alert("暂无联系人！")
+       }
+       else{
+           var flag=$('input:radio:checked').val()//选择联系人标记
+          if(flag){
+             // alert(localStorage.getItem("contact_num")+"联系人数量")
+              //alert(flag)
+              //var contact_list = document.getElementsByTagName("p");
+             // localStorage.setItem("contact_ID_No",contact_list[flag*2-1].innerHTML);
+              //alert(localStorage.getItem("contact_ID_No"))
+              //window.location.href="contact_delete_alter.html"
+          }
+             else{
+              alert("请选择要查看的联系人！")
+          }
+
+       }
+
+   }
+</script>
+
+</body>
+</html>

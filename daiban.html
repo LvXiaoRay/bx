@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link href="jquery.mobile/jquery.mobile-1.4.5.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="jquery.mobile/jquery-1.12.2.min.js"></script>
+    <script type="text/javascript" src="jquery.mobile/jquery.mobile-1.4.5.js"></script>
+    <title>理赔</title>
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+<style>
+    #bottom{
+        margin-left: 3px;
+        margin-right: 3px;
+    }
+</style>
+<body>
+    <!--导航栏-->
+    <div id="navigationbar_visit" >
+        <div data-role="header"  >
+            <a data-ajax="false" href="lipei.html">返回</a>
+            <h1>就诊人信息</h1>
+
+        </div>
+    </div>
+
+    <!--标题-->
+
+    <p id="visit_info_title">
+        请准确填写就诊人投保时告知的身份信息
+    </p>
+    <hr/>
+    <table class="visit_text_area" id="visit_info_detail">
+
+        <tr>
+            <td>就诊人姓名&nbsp;&nbsp;</td>
+            <td><input style="height: 35px"/></td>
+        </tr>
+
+        <tr>
+            <td>证件类型</td>
+            <td><input style="height: 35px"/></td>
+        </tr>
+
+        <tr>
+            <td>证件号码</td>
+            <td><input style="height: 35px"/></td>
+        </tr>
+
+        <tr>
+            <td>性别</td>
+            <td><input style="height: 35px"/></td>
+        </tr>
+
+        <tr>
+            <td>出生日期</td>
+            <td><input style="height: 35px"/></td>
+        </tr>
+
+        <tr>
+            <td>申请类型</td>
+            <td><input style="height: 35px"/></td>
+        </tr>
+
+        <tr>
+            <td>就诊日期</td>
+            <td><input style="height: 35px"/></td>
+        </tr>
+    </table>
+    <hr>
+
+    <div>
+        <p>意外医疗：填写事故发生日期</p>
+        <p>疾病医疗：一个保单期限内发生的费用可同案提交，填写最早发票日期</p>
+    </div>
+    <hr>
+
+    <div id="bottom">
+        <p>保单号</p>
+        <p>就诊人是否有民事行为能力</p>
+        <input id="check" type="checkbox">
+        <label for="check">我已阅读并同意《帮人代办承诺书》</label>
+        <button style="width: 100%">确定</button>
+    </div>
+</body>
+</html>

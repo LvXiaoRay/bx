@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html >
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link href="jquery.mobile/jquery.mobile-1.4.5.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="jquery.mobile/jquery-1.12.2.min.js"></script>
+<script type="text/javascript" src="jquery.mobile/jquery.mobile-1.4.5.js"></script>
+<script type="text/javascript" src="js/laydate.js"></script>
+<script>
+function tz_test11(){
+    var reg = /^[0-9a-zA-Z]+$/;
+
+var rval=$('input:radio:checked').val();
+localStorage.setItem("Bcyl_yemian",rval);
+    if(rval==1) {//选择急诊
+
+        var text_val1 = document.getElementById("name_num1").value;//发票号
+         var test_val=document.getElementById("dateTime").value;//日期
+         //li_val1[2].innerHTML && text_val1
+        if (test_val && text_val1) {
+            if( reg.test(text_val1)){
+          localStorage.setItem("fapiao_num",text_val1)//发票
+                localStorage.setItem("dataTime_11",test_val);//日期
+
+
+            window.parent.location.href = "jiuzhenren1.html";}
+            else {
+                alert('请输入正确格式的发票号！')
+            }
+        }
+        else {
+            alert('请完善信息！')
+        }
+
+    }
+
+     else if(rval==2){        //选择住院
+       var li_val2= document.getElementById("listViewForm").getElementsByTagName("li");//住院日期
+       var text_val2=document.getElementById("name_num1").value;//发票号
+        var test_val2=document.getElementById("dateTime").value;//就诊日期
+
+       if(test_val2&&text_val2){
+
+           if( reg.test(text_val2)){
+               localStorage.setItem("dataTime_11",test_val2)//就诊日期
+               localStorage.setItem("invoice_num",text_val2)//发票号
+
+               window.parent.location.href = "jiuzhenren1.html";}
+           else {
+               alert('请输入正确格式的发票号！')
+           }
+        }
+        else {alert('请完善信息！')}
+
+
+    }
+    else {  alert('请选择门（急）诊或者住院！')}
+    
+}
+</script>
+<style type="text/css">
+    .ui-li-static{
+        height: 55px;
+    }
+</style>
+
+</head>
+<body>
+
+<div class="box">
+	
+           
+
+	<div class="demo3">
+		<div data-role="fieldcontain">
+            <fieldset data-role="controlgroup"  data-type="horizontal" align="center" margin-bottom="5px">
+                <legend></legend>
+                <input type="radio" name="radio1" id="radio1_0_1" value="1" style="width:50px;height:20px" />
+                <label for="radio1_0_1" style="width:100px" text-align="center">门（急）诊</label>
+                <input type="radio" name="radio1" id="radio1_1_1" value="2"  style="width:50px;height:20px"/>
+                <label for="radio1_1_1" style="width:100px" text-align="center">住    院</label>
+                
+            </fieldset>
+        </div>
+		 <ul data-role="listview" data-inset="true" id="listViewForm">
+
+                              
+                 <li style="float:left;display:inline;width:20%;"><font size="2">就诊日期:</font>
+                     <p style="font-size:2px">(同发票日期）</p>
+                 </li>
+
+             <li><input style="display:inline" data-inline="true" id="dateTime" placeholder="请输入日期" value="" ></li>
+
+                 <li data-role="fieldcontain">
+                    <label for="name_num1">发票号:</label>
+                    <input type="text" name="name"  id="name_num1" value=""/>
+                </li>
+<br/>
+                <br/>
+   
+                <li data-role="fieldcontain">  <button onclick="tz_test11()">立即申请</button>
+                                                     </li>
+		</ul>
+	</div>
+
+	
+
+</div>
+
+<script type="text/javascript">
+!function(){
+	laydate.skin('molv');//切换皮肤，请查看skins下面皮肤库
+	laydate({elem: '#demo'});//绑定元素
+}();
+
+//日期范围限制
+var start = {
+    elem: '#dateTime',
+    format: 'YYYY-MM-DD',//设定最小日期为当前日期
+    min:'1980-01-01', 
+    max:laydate.now(), //最大日期
+
+};
+
+var end = {
+    elem: '#end',
+    format: 'YYYY-MM-DD',
+    min: laydate.now(),
+    max: '2099-06-16',
+    istime: true,
+    istoday: false,
+    choose: function(datas){
+        start.max = datas; //结束日选好后，充值开始日的最大日期
+    }
+};
+laydate(start);
+laydate(end);
+
+//自定义日期格式
+laydate({
+    elem: '#test1',
+    format: 'YYYY年MM月DD日',
+    festival: true, //显示节日
+    choose: function(datas){ //选择日期完毕的回调
+        alert('得到：'+datas);
+    }
+});
+
+//日期范围限定在昨天到明天
+laydate({
+    elem: '#hello3',
+    min: laydate.now(-1), //-1代表昨天，-2代表前天，以此类推
+    max: laydate.now(+1) //+1代表明天，+2代表后天，以此类推
+});
+</script>
+</body>
+</html>

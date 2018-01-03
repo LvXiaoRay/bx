@@ -1,0 +1,398 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link href="jquery.mobile/jquery.mobile-1.4.5.css" rel="stylesheet" type="text/css">
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/default.css">
+    <link href="css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+    <script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.0.min.js"><\/script>')</script>
+    <script src="js/fileinput.js" type="text/javascript"></script>
+    <!--简体中文-->
+    <script src="js/locales/zh.js" type="text/javascript"></script>
+    <!--繁体中文-->
+    <script src="js/locales/zh-TW.js" type="text/javascript"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="jquery.mobile/jquery-1.12.2.min.js"></script>
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script src="http://www.jq22.com/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script src="js/IMGUP.js"></script>
+    <link href="css/IMGUP.css" rel="stylesheet" />
+    <script type="text/javascript" src="jquery.mobile/jquery.mobile-1.4.5.js"></script>
+    <link rel="stylesheet" href="control/css/zyUpload.css" type="text/css">
+
+    <script type="text/javascript" src="jquery-1.7.2.js"></script>
+    <!-- 引用核心层插件 -->
+    <script type="text/javascript" src="core/zyFile.js"></script>
+    <!-- 引用控制层插件 -->
+    <script type="text/javascript" src="control/js/zyUpload.js"></script>
+    <!-- 引用初始化JS -->
+    <script type="text/javascript" src="demo.js"></script>
+    <link rel="stylesheet" href="css/simpleAlert.css">
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/simpleAlert.js"></script>
+
+    <style>
+        .box_test{
+            width: 272px;
+            height: auto;
+            position: fixed;left: 50%; top: 25%;
+            margin-left: -150px;
+            border: 1px solid #fbfffb;
+            display: none;
+        }
+        .waiceng{
+            display: none;
+        }
+    </style>
+    <script type="text/javascript">
+
+    </script>
+</head>
+
+
+<body height="100%">
+<div data-role="page" height="90%">
+    <div data-role="header"  >
+        <a data-ajax="false" href="dizhi111.html">返回</a>
+        <h1>影像信息</h1>
+
+    </div>
+    <ul data-role="listview" style="margin-top:0px;">
+        <p style=text-align:left;">门(急)诊</p>
+
+        <li><p>诊断证明</p>
+            <form action="">
+                <input type="file" value="" name="imgOne3" id="imgOne1_2_1" multiple onchange="preImg(this.id,'imgPre1_2_1');" />
+                <img id="imgPre1_2_1" src="" style="data-inline:true;display: block;height:40px;width:40px" />
+            </form>
+        </li>
+        <li><p>医疗费用原始收据</p>
+            <form action="">
+                <input type="file" value="" name="imgOne3" id="imgOne1_2_2" onchange="preImg(this.id,'imgPre1_2_2');" />
+                <img id="imgPre1_2_2" src="" style="data-inline:true;display: block;height:40px;width:40px" />
+            </form>
+        </li>
+
+
+        <li><p>专员费用结算单及费用清单</p>
+            <form action="">
+                <input type="file" required="required" name="imgOne3" id="imgOne1_2_3" onchange="preImg(this.id,'imgPre1_2_3');" />
+                <img id="imgPre1_2_3" src="" style="data-inline:true;display: block;height:40px;width:40px" />
+            </form>
+        </li>
+
+
+
+        <li><p>其他材料</p>
+            <form action="">
+                <input type="file" name="imgOne6" required="required" id="imgOne1_2_4" onchange="preImg(this.id,'imgPre1_2_4');" />
+                <img id="imgPre1_2_4" src="" style="data-inline:true;display: block;height:40px;width:40px" />
+            </form>
+        </li>
+    </ul>
+    <div id="wai_ceng" class="ui-page" style="z-index:4;position: fixed;top:0;left: 0;bottom: 0;right: 0;background:black;opacity:1;display: none" >
+        <div style="z-index: 5;background: #ffffff;height: 100%" class="ui-table" id="tanchuang" >
+            <div data-role="header"  >
+
+                <h1>信息确认</h1>
+
+            </div>
+            <table style="width: 100%">
+                <tr>
+                    <td>
+                        <p>请确认以下信息！</p>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>就诊人：</td>
+                    <td><p id="jzr"></p></td>
+                </tr>
+                <tr>
+                    <td>手机号码：</td>
+                    <td><p id="phone_num" ></p></td>
+                </tr>
+
+                <tr>
+                    <td>账户名：</td>
+                    <td><p id="account_num"></p></td>
+                </tr>
+                <tr>
+                    <td>银行账号：</td>
+                    <td><p id="bank_account_num"></p></td>
+                </tr>
+                <tr>
+                    <td>发票号：</td>
+                    <td><p id="fapiao_num"></p></td>
+                </tr>
+                <tr>
+                    <td>申请人：</td>
+                    <td><p id="sq_person"></p></td>
+                </tr>
+                <tr>
+                    <td>申请类型：</td>
+                    <td><p>门（急）诊</p></td>
+                </tr>
+                <tr>
+                    <td>是否选择交割单</td>
+                    <td style="padding-left: 0px">
+                        <select name="articlecolumn" id="sex_gender" class="select" >
+                            <option value="-1" selected="selected">请选择</option>
+                            <option value="1">是</option>
+                            <option value="0">否</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td  style="width: 50%"><button style="background: #83d6ff" onclick="tijiao()">确定</button></td>
+                    <td  style="width: 50%"><button style="background: #83d6ff" onclick="close_tanchuang()">取消</button></td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+
+    <button id="dblChoseAlert" style="z-index: 2" onclick="tijiao1_1_1()"><a href="#">提交资料</a></button>
+</div>
+<script src="js/lib.js"></script>
+<script>
+
+
+</script>
+<script>
+    function close_tanchuang() {
+        document.getElementById("tanchuang").style.display='none';
+        document.getElementById("wai_ceng").style.display='none';
+
+
+    }
+    function test() {
+
+
+    }
+</script>
+
+
+<script>
+    /*
+    $('#file-zh').fileinput({
+        language: 'zh',
+        uploadUrl: '#',
+        allowedFileExtensions : ['jpg', 'png','gif'],
+    });
+    $('#file-zh2').fileinput({
+        language: 'zh',
+        uploadUrl: '#',
+        allowedFileExtensions : ['jpg', 'png','gif'],
+    });
+    $('#file-zh-TW').fileinput({
+        language: 'zh-TW',
+        uploadUrl: '#',
+        allowedFileExtensions : ['jpg', 'png','gif'],
+    });
+    $("#file-0").fileinput({
+        'allowedFileExtensions' : ['jpg', 'png','gif'],
+    });
+    $("#file-1").fileinput({
+        uploadUrl: '#', // you must set a valid URL here else you will get an error
+        allowedFileExtensions : ['jpg', 'png','gif'],
+        overwriteInitial: false,
+        maxFileSize: 1000,
+        maxFilesNum: 10,
+        //allowedFileTypes: ['image', 'video', 'flash'],
+        slugCallback: function(filename) {
+            return filename.replace('(', '_').replace(']', '_');
+        }
+    });
+    /*
+    $(".file").on('fileselect', function(event, n, l) {
+        alert('File Selected. Name: ' + l + ', Num: ' + n);
+    });
+    */
+    /*
+    $("#file-3").fileinput({
+        showUpload: false,
+        showCaption: false,
+        browseClass: "btn btn-primary btn-lg",
+        fileType: "any",
+        previewFileIcon: "<i class='glyphicon glyphicon-king'></i>"
+    });
+    $("#file-4").fileinput({
+        uploadExtraData: {kvId: '10'}
+    });
+    $(".btn-warning").on('click', function() {
+        if ($('#file-4').attr('disabled')) {
+            $('#file-4').fileinput('enable');
+        } else {
+            $('#file-4').fileinput('disable');
+        }
+    });
+    $(".btn-info").on('click', function() {
+        $('#file-4').fileinput('refresh', {previewClass:'bg-info'});
+    });
+    /*
+    $('#file-4').on('fileselectnone', function() {
+        alert('Huh! You selected no files.');
+    });
+    $('#file-4').on('filebrowse', function() {
+        alert('File browse clicked for #file-4');
+    });
+    */
+    /*
+    $(document).ready(function() {
+        $("#test-upload").fileinput({
+            'showPreview' : false,
+            'allowedFileExtensions' : ['jpg', 'png','gif'],
+            'elErrorContainer': '#errorBlock'
+        });
+        /*
+        $("#test-upload").on('fileloaded', function(event, file, previewId, index) {
+            alert('i = ' + index + ', id = ' + previewId + ', file = ' + file.name);
+        });
+        */
+    /* });
+
+     */
+
+</script>
+<script type="text/javascript">
+
+    function preImg(sourceId, targetId) {
+        if (typeof FileReader === 'undefined') {
+            alert('格式错误');
+            return;
+        }
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+
+            var img = document.getElementById(targetId);
+            img.src = this.result;
+        }
+        reader.readAsDataURL(document.getElementById(sourceId).files[0]);
+    }
+    function tijiao1_1_1() {
+        var length21=$("#imgOne1_2_1").val();
+        var length22=$("#imgOne1_2_2").val();
+        var length23=$("#imgOne1_2_3").val();
+        var length24=$("#imgOne1_2_4").val();
+
+
+        if(length22&&length21&&length23) {
+            document.getElementById("jzr").innerHTML = localStorage.getItem("name_jzr");
+            document.getElementById("phone_num").innerHTML = localStorage.getItem("application_phone");
+            document.getElementById("account_num").innerHTML = localStorage.getItem("application_name");
+            document.getElementById("bank_account_num").innerHTML = localStorage.getItem("application_account_num");
+            document.getElementById("fapiao_num").innerHTML = localStorage.getItem("invoice_num")//发票号
+            document.getElementById("sq_person").innerHTML = localStorage.getItem("application_name")
+
+            $('#tanchuang').css('display', 'block');
+            $('#wai_ceng').css('display', 'block');
+
+
+        }else {alert("请提交完整的资料！")
+
+
+        }
+
+
+
+    }
+    function tijiao() {
+        var dblChoseAlert = simpleAlert({
+
+            "content":"是否继续提交材料!",
+            "buttons":{
+                "取消":function () {
+                    _post('/app/compensation/',{
+                        type:0,
+                        person_id:localStorage.getItem("Id_jzr"),
+                        phone:localStorage.getItem("application_phone"),
+                        address:localStorage.getItem("address_dizhi"),
+                        bank:localStorage.getItem("application_bank"),
+                        bank_city:localStorage.getItem("city_bank"),
+                        account_name:localStorage.getItem("application_name"),
+                        account_num:localStorage.getItem("application_account_num"),
+                        date:localStorage.getItem("dataTime_11"),
+                        invoice_num:localStorage.getItem("invoice_num"),
+                        option:2,//住院标志
+                        need_division:localStorage.getItem("need_division"),
+                        file02000:$("#imgOne1_2_1")[0].files[0],
+                        file02010:$("#imgOne1_2_2")[0].files[0],
+                        file02020:$("#imgOne1_2_3")[0].files[0],
+                        file02030:$("#imgOne1_2_4")[0].files[0],
+                    }).then(function (d) {
+
+                        if(d.code==0){
+                            alert("上传成功");
+                            window.setTimeout("window.location.href='zizhu_lipei.html'",1000);
+                            localStorage.removeItem("compensation_id");
+                        }
+                        else {
+                            alert(d.desc);
+
+                        }
+
+                    }).fail(function(){alert("上传失败！")})
+
+                    dblChoseAlert.close();
+
+
+                },
+
+                "确定":function () {
+                    _post('/app/compensation/',{
+                        type:0,
+                        person_id:localStorage.getItem("Id_jzr"),
+                        //phone:localStorage.getItem("application_phone"),
+                        phone:"12345678901",
+                        address:localStorage.getItem("address_dizhi"),
+                        bank:localStorage.getItem("application_bank"),
+                        bank_city:localStorage.getItem("city_bank"),
+                        account_name:localStorage.getItem("application_name"),
+                        account_num:localStorage.getItem("application_account_num"),
+                        date:localStorage.getItem("dataTime_11"),
+                        invoice_num:localStorage.getItem("invoice_num"),
+                        option:1,
+                        need_division:localStorage.getItem("need_division"),
+                        file02000:$("#imgOne1_2_1")[0].files[0],
+                        file02010:$("#imgOne1_2_2")[0].files[0],
+                        file02020:$("#imgOne1_2_3")[0].files[0],
+                        file02030:$("#imgOne1_2_4")[0].files[0],
+
+                    }).then(function (d) {
+
+                        if(d.code==0){
+                            alert("本次上传成功！即将开始下次提交！");
+                            localStorage.setItem("compensation_id",d.compensation_id),
+                                window.setTimeout("window.location.href='test111.html'",1000);
+                            localStorage.removeItem("compensation_id");
+                        }
+                        else {
+                            alert(d.desc);
+
+                        }
+
+                    }).fail(function(){alert("上传失败！")})
+
+                    dblChoseAlert.close();
+
+
+                },
+
+            }
+        })
+
+
+
+    }
+
+</script>
+</body>
+
+</html> 

@@ -1,0 +1,394 @@
+/* 页面共享css */
+
+#insurance_title{
+    width: 100%;
+}
+#insurance_td_name{
+    width: 40%;
+}
+#insurance_td_title{
+    width: 60%;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*就诊人信息页面*/
+h1{
+    height: 40px;
+    font-size: 18.0px;
+    line-height: 40px;
+    text-align: center;
+    font-weight: normal;
+}
+/*就诊人信息*/
+#visit_info_title{
+    text-align: center;
+}
+.visit_text_area {
+    height: 8px;
+    margin: auto;
+}
+#bottom{
+    margin-left: 20px;
+}
+#daiban_table{
+    width: 100%;
+    margin-bottom: 10px;
+}
+#daiban_checkbox{
+    width: 10%;
+}
+#daiban_span{
+    width: 90%;
+}
+#daiban_desctiption p{
+    margin-left: 2em;
+}
+
+
+
+
+/*意外伤害住院津贴页面*/
+#allowance{
+    height: 600px;
+    margin-left: 10px;
+}
+/*住院津贴导航栏*/
+#navigationbar_allowance{
+    margin: 0px;
+    height: 10%;
+    line-height: 60px;
+}
+/*住院津贴主体*/
+#allowance_body{
+    height: 50%;
+}
+
+/* "立即申请" 按钮水平居中*/
+#allowance_bottom{
+    text-align: center;
+    height: 40%;
+}
+#allowance_button{
+    height: 50px;
+    width: 80%;
+    background-color: white;
+    line-height: 30px;
+}
+
+
+
+
+
+/*雇主责任页面*/
+#navigationbar_employer{
+    margin-left: 10px;
+    height: 10%;
+    line-height: 60px;
+}
+/*付费缘由*/
+#pay_reason{
+    width: 100%;
+}
+/*选择出险人*/
+#choose_insurance_person{
+    width: 100%;
+}
+#insurance_person_name{
+    width: 50%;
+}
+#insurance_person{
+    text-align: right;
+}
+/*出险日期*/
+#choose_insurance_date{
+    width: 100%;
+}
+#insurance_date_name{
+    width: 50%;
+}
+#insurance_date{
+    text-align: right;
+}
+/*发票号*/
+#invoice_num{
+    width: 100%;
+}
+#invoice_num_name{
+    width: 30%;
+}
+#invoice_num_input{
+    width: 70%;
+    text-align: left;
+}
+#input{
+    border:double;
+}
+/*立即申请按钮*/
+#invoice_bottom{
+    text-align: center;
+}
+#invoice_button{
+    border: double;
+    background-color: white;
+    height: 40px;
+    width: 90px;
+}
+
+
+
+
+/*关于我们页面*/
+#about_us_info p{
+    text-indent: 2em;
+}
+#about_us_version p{
+    text-indent: 2em;
+}
+
+
+
+
+
+
+/*服务手册页面*/
+#service_manual_navigationbar a{
+
+}
+#service_manual_search input{
+    margin: 10px;
+}
+
+
+
+/*保单列表页面*/
+#insured_policy li{
+    list-style: none;
+}
+#policy_holder_policy li{
+    list-style: none;
+}
+
+
+/*被保人保单页面*/
+#insured_policy_body p{
+    margin: 2em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+div[data-role=header] a {
+    margin-top: 11px !important;
+}
+
+
+
+
+
+/*身份信息页面*/
+/*姓名*/
+#personal_info_name{
+    border-top: 1px solid #bbbbbb;
+    border-bottom: 1px solid #bbbbbb;
+    height: 3em;
+    width: 100%;
+}
+#personal_info_attribute{
+    padding-left: 2em;
+    width: 50%;
+}
+#personal_info_attribute_value{
+    width: 50%;
+    text-align: center;
+}
+/*证件类型*/
+#personal_info_id_type{
+    border-bottom: 1px solid #bbbbbb;
+    height: 3em;
+    width: 100%;
+}
+#personal_info_id_type1{
+    padding-left: 2em;
+    width: 50%;
+}
+#personal_info_id_type2{
+    width: 50%;
+    text-align: center;
+}
+/*证件号码*/
+#personal_info_id_num{
+    border-bottom: 1px solid #bbbbbb;
+    height: 3em;
+    width: 100%;
+}
+#personal_info_id_num1{
+    padding-left: 2em;
+    width: 50%;
+}
+#personal_info_id_num2{
+    width: 50%;
+    text-align: center;
+}
+/*性别*/
+#personal_info_gender{
+    border-bottom: 1px solid #bbbbbb;
+    height: 3em;
+    width: 100%;
+}
+#personal_info_id_gender1{
+    padding-left: 2em;
+    width: 50%;
+}
+#personal_info_id_gender2{
+    width: 50%;
+    text-align: center;
+}
+/*生日*/
+#personal_info_id_birthday{
+    border-bottom: 1px solid #bbbbbb;
+    height: 3em;
+    width: 100%;
+}
+#personal_info_id_birthday1{
+    padding-left: 2em;
+    width: 50%;
+}
+#personal_info_id_birthday2{
+    width: 50%;
+    text-align: center;
+}
+
+
+
+
+/*编辑地址页面*/
+#edit_address_body{
+    margin-top: 1em;
+    width: 100%;
+}
+#edit_address_body tr{
+    height: 3em;
+}
+#edit_address_body td{
+    padding-left: 2em;
+    width: 50%;
+}
+#address_button{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+/*去除链接的下划线*/
+#address_button a{
+    text-decoration: none;
+}
+
+
+
+
+
+/*我的邮箱页面*/
+#email_title{
+    height: 3em;
+    width: 100%;
+    border-top: 1px solid #bbbbbb;
+    border-bottom: 1px solid #bbbbbb;
+}
+#email_title td{
+    text-align: center;
+}
+#email_button{
+    margin-top: 2em;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+#email_button a{
+    text-decoration: none;
+}
+
+
+/*涉税信息页面*/
+#tax_type_1{
+    height: 4em;
+    border-top: 1px solid #bbbbbb;
+    border-bottom: 1px solid #bbbbbb;
+    width: 100%;
+}
+#tax_type1{
+    padding: 10px;
+    width: 10%;
+}
+#tax_type1_value{
+    padding: 10px;
+    width: 90%;
+}
+#tax_type_2{
+    height: 4em;
+    border-bottom: 1px solid #bbbbbb;
+    width: 100%;
+}
+#tax_type2{
+    padding: 10px;
+    width: 10%;
+}
+#tax_type2_value{
+    padding: 10px;
+    width: 90%;
+}
+#tax_info_button{
+    margin-top: 2em;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+#tax_info_button a{
+    text-decoration: none;
+}
+
+
+
+/*添加联系人页面*/
+#add_contract table{
+    border-top: 1px solid #bbbbbb;
+    height: 3em;
+    width: 100%;
+}
+#add_contract table td{
+    padding-left: 2em;
+    width: 50%;
+}
+#is_insurance{
+    border-top: 1px solid #bbbbbb;
+    border-bottom:1px solid #bbbbbb;
+    height: 3em;
+    width: 100%;
+}
+
+
+
+
+
+/*投保咨询*/
+#insurance_advice_title{
+    border-top: 1px solid #bbbbbb;
+    border-bottom: 1px solid #bbbbbb;
+    height: 3em;
+    width: 100%;
+    text-align: center;
+}
+
+
+
+
+
+

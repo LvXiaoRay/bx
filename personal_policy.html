@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link href="jquery.mobile/jquery.mobile-1.4.5.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="jquery.mobile/jquery-1.12.2.min.js"></script>
+    <script type="text/javascript" src="jquery.mobile/jquery.mobile-1.4.5.js"></script>
+    <title>保单列表</title>
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+<body>
+<!--导航栏-->
+<div data-role="header" data-position="fixed" id="policy_list_navigationbar" >
+    <a data-ajax="false" href="policy_list.html">返回</a>
+    <h1>保单列表</h1>
+</div>
+
+<ul data-role="listview" data-inset="true" id="insured_policy">
+    <li><a data-ajax="false" href=" insured_policy.html">被保人保单</a></li>
+</ul>
+
+
+<ul data-role="listview" data-inset="true" id="policy_holder_policy">
+    <li><a data-ajax="false" href="policy_holder_policy.html">投保人保单</a></li>
+</ul>
+
+</body>
+</html>

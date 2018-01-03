@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <link href="jquery.mobile/jquery.mobile-1.4.5.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="jquery.mobile/jquery-1.12.2.min.js"></script>
+    <script type="text/javascript" src="jquery.mobile/jquery.mobile-1.4.5.js"></script>
+    <title>身份信息</title>
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+<body>
+    <!--导航栏-->
+    <div data-role="header" data-position="fixed" >
+        <a data-ajax="false" href="personal_info.html">返回</a>
+        <h1>身份信息</h1>
+    </div>
+
+    <!--姓名-->
+    <table id="personal_info_name">
+        <tr>
+            <td id="personal_info_attribute">姓名:</td>
+            <td id="personal_info_attribute_value"></td>
+        </tr>
+    </table>
+
+    <!--证件类型-->
+    <table id="personal_info_id_type">
+        <tr>
+            <td id="personal_info_id_type1">证件类型:</td>
+            <td id="personal_info_id_type2"></td>
+        </tr>
+    </table>
+
+    <!--证件号码-->
+    <table id="personal_info_id_num">
+        <tr>
+            <td id="personal_info_id_num1">证件号码:</td>
+            <td id="personal_info_id_num2"></td>
+        </tr>
+    </table>
+
+    <!--性别-->
+    <table id="personal_info_gender">
+        <tr>
+            <td id="personal_info_id_gender1">性别:</td>
+            <td id="personal_info_id_gender2"></td>
+        </tr>
+    </table>
+
+    <!--生日-->
+    <table id="personal_info_id_birthday">
+        <tr>
+            <td id="personal_info_id_birthday1">生日:</td>
+            <td id="personal_info_id_birthday2"> </td>
+        </tr>
+    </table>
+
+<script src="js/lib.js"></script>
+<script>
+    _get('/app/user/identity/', {
+
+    }).then(function(data) {
+        if(data.code==0) {
+            // $('#id_person').innerHTML(data.user_id);
+            document.getElementById("personal_info_attribute_value").innerHTML= data.data.name;
+            // $('#nickname').val(data.nickname);
+            document.getElementById("personal_info_id_type2").innerHTML=data.data.id_type;
+            // $('#company_code').val(data.company_code);
+            document.getElementById("personal_info_id_num2").innerHTML=data.data.username;
+            // $('#company_name').val(data.company_name);
+            document.getElementById("personal_info_id_gender2").innerHTML=data.data.sex;
+            // $('#email').val(data.email);
+            document.getElementById("personal_info_id_birthday2").innerHTML=data.data.birth;
+
+        }
+        else{
+            alert(data.desc)
+        }
+    }).fail(function(){
+        alert("无法链接网络!")
+    });
+
+
+</script>
+</body>
+</html>

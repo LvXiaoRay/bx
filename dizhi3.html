@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html >
+<head>
+<meta charset="UTF-8">
+<title>A Pen by  kerry</title>
+       <link rel="stylesheet" href="css/style.css">
+     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link href="jquery.mobile/jquery.mobile-1.4.5.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="jquery.mobile/jquery-1.12.2.min.js"></script>
+    <script type="text/javascript" src="jquery.mobile/jquery.mobile-1.4.5.js"></script>
+<script>
+function tz(){
+    window.location.href="testphoto3.html";
+    
+}
+</script>
+<style type="text/css">
+    /*自定义样式*/
+    body,html{
+        margin: 0;
+        padding: 0;
+    }
+    .select-value,.select-value2{
+        width: 80%;
+        height: 30px;
+        border:1px solid #ccc;
+    }
+    p{
+        margin:0;
+        padding:0;
+    }
+    .slide-wapper {
+        padding:20px;
+        overflow-y: scroll;
+         background: #eee;
+    }
+    .title{
+        padding-top:30px;
+        padding-bottom:10px;
+        color:#333;
+    }
+    .title2{
+        padding-top:20px;
+        font-size: 22px;
+    }
+
+    </style>
+</head>
+
+<body> 
+  
+   
+  <div data-role="header" >
+        <a data-ajax="false" href="test-sq3.html">返回</a>
+        <h1>银行信息</h1>  </div>
+ <ul data-role="listview" style="margin-top:0px;">
+           <li style="float:left;display:inline;width:20%;height:30px"><h2>账户名：</h2>
+               </li>
+              <li style="width:fill-present;height:30px"><p>LiSha</p></li>
+                         <li style="float:left;display:inline;width:20%;height:30px"><h2>银行账号：</h2>
+               </li>
+              <li style="width:fill-present;height:30px"><p>2345321534543534</p></li>
+         
+              <li style="float:left;display:inline;width:20%;height:40px"><h2>开户城市：</h2>
+               </li>
+              <li style="width:fill-present;height:40px">
+
+    <input type="text" class="select-value" value="点击选择城市">
+  </li>
+              <li style="float:left;display:inline;width:20%;height:40px"><h2>开户银行：</h2>
+               </li>
+              <li style="width:fill-present;height:40px">
+
+    <input type="text"  value="XXXX">
+     <p>请确认账户名与银行卡持有人一致，否则将导致理赔款转款不成功</p>
+  </li>
+       <li data-role="fieldcontain">  <button onclick="tz()">立即申请</button>
+                                                     </li>
+       </ul>
+
+<script src="js/index.js"></script>
+</body>
+</html>

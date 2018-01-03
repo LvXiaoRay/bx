@@ -1,0 +1,88 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link href="jquery.mobile/jquery.mobile-1.4.5.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="jquery.mobile/jquery-1.12.2.min.js"></script>
+<script type="text/javascript" src="jquery.mobile/jquery.mobile-1.4.5.js"></script> 
+<script type="text/javascript"></script>
+
+ 
+<style type="text/css">
+</style>
+</head>
+<body>
+<div data-role="page">
+    <div data-role="header"  >
+       <a data-ajax="false" href="test111.html" >返回</a>
+        <h1>选择就诊人</h1>    
+        
+    </div>
+    <p style="display:block;height:20px;width:auto;test-size:1px;word-break:break-all;">部分被保险人身份信息不唯一,请以系统带出的出险人申请理赔!</p>
+    <br>
+        <ul data-role="listview" style="margin-top:0px;" id="connector_list">
+
+
+         </ul>
+   
+    <button onclick="test_dizhi()">选择完毕</button>
+</div>
+<script src="js/lib.js"></script>
+ <script>
+
+     _get('/app/user/beibaoxianren/', {
+     }).then(function(data) {
+         var str=""
+
+         if(data.data.count<1){
+             alert("获取信息错误！")
+         }
+         else{
+
+             for(var num=0;num<data.data.count;num++){
+
+                 str='<li> <label><input name="Fruit" id="id_name'+num+'" type="radio" value="'+data.data.list[num].name+'"/>' +
+                     '<p >'+data.data.list[num].name+'</p>' +
+                     '<p id="id_num'+num+'"  style="font-size:10px">'+data.data.list[num].user_id+'</p>' +
+                     '</label></li>'
+             }
+             document.getElementById("connector_list").innerHTML=str;
+         }
+     }).fail(function(){
+         alert('无法连接网络！')});
+
+     function test_dizhi() {
+         var radio_value = $('input:radio:checked').val();//选择的就诊人radio的值。
+         var jiuzhen_people=document.getElementsByTagName("li");
+         var pp_num=document.getElementsByTagName("p");
+
+         localStorage.setItem("Id_jzr",pp_num[jiuzhen_people.length+1].innerHTML)//就诊人Id
+         //alert(localStorage.getItem("Id_jzr")+"sdfsdfsdf");
+         localStorage.setItem("name_jzr",radio_value);//存储就诊人姓名
+         //alert("jiuzhenren-name"+localStorage.getItem("name_jzr"))
+
+
+
+        // alert(localStorage.getItem("Id_jzr"))
+         //alert("sdfsdffdsfsd")
+         if (radio_value == undefined) {
+             alert("请选择就诊人！")
+         }
+         else{
+
+
+
+             window.location.href="test-shenqing111.html"
+         }
+     }
+   //  var radio_value=$('input:radio:checked').val();
+
+    // var radio_num = document.getElementsByTagName("li");//li的array；
+     // radio_num[1].innerHTML="<p>dfdfs</p>"
+
+
+ </script>
+</body>
+</html>

@@ -1,0 +1,315 @@
+﻿<!DOCTYPE html >
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link href="jquery.mobile/jquery.mobile-1.4.5.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="jquery.mobile/jquery-1.12.2.min.js"></script>
+<script type="text/javascript" src="jquery.mobile/jquery.mobile-1.4.5.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+
+
+
+
+<script>
+</script>
+<style type="text/css">
+.div1{text-align:left} 
+.div2{text-align:center} 
+.div3{  text-align:right} 
+</style>
+</head>
+<body>
+<div data-role="page" id="page">
+    
+     <div data-role="header"  data-fullscreen="true">
+        <a data-ajax="false" href="lipei_record.html">返回</a>
+        <h1>理赔记录</h1>    
+        
+    </div>
+       
+    <div data-role="content">
+
+        <table style="width: 100%">
+            <tr style="height: 55px" >
+                <td >就诊人:</td>
+                <td style="padding-left: 6px;margin-right: 0px" id="name_jzr" >
+
+                </td>
+
+            </tr>
+            <tr   style="height: 55px">
+                <td >证件号:</td>
+                <td style="padding-left: 6px;margin-right: 0px" id="compensation_name_id">
+
+                </td>
+
+            </tr>
+            <tr  style="height: 55px">
+                <td>理赔单号:</td>
+
+                <td style="padding-left: 6px" id="compensation_id"></td>
+            </tr>
+            <tr  style="height: 55px">
+                <td>理赔类型:</td>
+                <td style="padding-left: 6px"  id="compensation_type" ></td>
+            </tr>
+            <tr  style="height: 55px">
+                <td>理赔状态:</td>
+                <td style="padding-left: 6px" id="compensation_state"></td>
+            </tr>
+            <tr  style="height: 55px">
+                <td>银行:</td>
+                <td style="padding-left: 6px" id="compensation_bank" ></td>
+            </tr>
+            <tr  style="height: 55px">
+                <td>银行账号:</td>
+                <td style="padding-left: 6px" id="compensation_bank_num"></td>
+            </tr>
+            <tr  style="height: 55px">
+                <td>理赔金额:</td>
+                <td style="padding-left: 6px" id="compensation_pay"></td>
+            </tr>
+            <tr  style="height: 55px">
+                <td >受理时间:</td>
+                <td style="padding-left: 6px"  id="data_handle">
+
+                </td>
+            </tr>
+            <tr  style="height: 55px">
+                <td >保单年度:</td>
+                <td style="padding-left: 6px"  id="bill_year">
+
+                </td>
+            </tr>
+
+        </table>
+        <div>
+            <table id="picture_list"><tr><td></td></tr></table>
+        </div>
+    <button style="display: none" onclick="wanshan()" id="wszl_btn">完善资料</button>
+
+
+
+    </div>
+</div>
+<script src="js/lib.js"></script>
+<script>
+    _get('/app/compensation/'+localStorage.getItem("compensation_id")+'/', {
+
+    }).then(function(data) {
+        //alert(data.data.count);
+        //alert(data.data.user_id)
+        //alert(data.user_id)
+        if(data.code==0) {
+            document.getElementById("name_jzr").innerHTML=data.data.person_name;//就诊人
+           // alert(data.data.person_name+"jijii")
+            document.getElementById("compensation_name_id").innerHTML=data.data.person_id;
+            document.getElementById("compensation_id").innerHTML=data.data.compensation_id;//保单号
+            //document.getElementById("compensation_type").value=data.data.type;//理赔类型
+            if(data.data.type==0){
+                document.getElementById("compensation_type").innerHTML="补充医疗"
+                localStorage.setItem("type_canshu",data.data.type)
+
+            }else if (data.data.type==1){
+                document.getElementById("compensation_type").innerHTML="医疗保险"
+                    localStorage.setItem("type_canshu",data.data.type)
+            }else if (data.data.type==2){
+                document.getElementById("compensation_type").innerHTML="疾病住院津贴"
+                localStorage.setItem("type_canshu",data.data.type)
+            }else if (data.data.type==3){
+                document.getElementById("compensation_type").innerHTML="意外伤害"
+                localStorage.setItem("type_canshu",data.data.type)
+
+            }else if (data.data.type==4){
+                document.getElementById("compensation_type").innerHTML="意外伤害医疗"
+                localStorage.setItem("type_canshu",data.data.type)
+
+            }else if (data.data.type==5){
+                document.getElementById("compensation_type").innerHTML="意外伤害住院津贴"
+                localStorage.setItem("type_canshu",data.data.type)
+            }else if (data.data.type==6){
+                document.getElementById("compensation_type").innerHTML="雇主责任"
+                localStorage.setItem("type_canshu",data.data.type)
+            }else if (data.data.type==7){
+                document.getElementById("compensation_type").innerHTML="重大疾病"
+                localStorage.setItem("type_canshu",data.data.type)
+            }
+            localStorage.setItem("compensation_id",data.data.compensation_id);
+            //document.getElementById("compensation_state").value=data.data.state;//理赔状态
+            if(data.data.state==0){
+                document.getElementById("compensation_state").innerHTML="未审核"
+            }else if(data.data.state==1){
+                document.getElementById("compensation_state").innerHTML="已受理"
+            }else if(data.data.state==2){
+                document.getElementById("compensation_state").innerHTML="原件已提交"
+            }else if(data.data.state==3){
+                document.getElementById("compensation_state").innerHTML="材料待完善"
+                document.getElementById("wszl_btn").style.display='block';
+            }
+            else if(data.data.state==9){
+                document.getElementById("compensation_state").innerHTML="已结算"
+            }
+            else if(data.data.state==10){
+                document.getElementById("compensation_state").innerHTML="审核未通过"
+            }
+               document.getElementById("compensation_bank").innerHTML=data.data.bank;
+            document.getElementById("compensation_bank_num").innerHTML=data.data.account_num;
+            if(data.data.data_handle!=undefined){
+                document.getElementById("data_handle").innerHTML=data.data.date_handle.split('.')[0].replace('T',' ');
+            }
+          else{
+                document.getElementById("data_handle").innerHTML="0";
+            }
+            if(data.data.pay!=undefined){
+                document.getElementById("compensation_pay").innerHTML=data.data.pay;
+
+            }
+            else{
+                document.getElementById("compensation_pay").innerHTML="0";
+            }
+
+           // document.getElementById("compensation_pay").innerHTML=data.data.pay;
+            document.getElementById("bill_year").innerHTML=data.data.bill_year;
+
+            //alert(data.data.file_list.length);
+            //alert(data.data.file_list[1])
+            if(data.data.file_list.length==0){
+                document.getElementById("picture_list").innerHTML='<tr><td><p>您还没有提交图片！</p></td></tr>';
+            }
+            else {
+                var str="<tr><td><p>提交材料如下：</p></td></tr>";
+                var str0="";
+                var str1="";
+                var str2="";
+                var str3="";
+                var str4="";
+                var str5="";
+                var str6="";
+                var str7="";
+                var str8="";
+                var str9="";
+
+               // alert(data.data.file_list[0].path_url)
+               if(localStorage.getItem("type_canshu")==0){
+                   for(var i=0;i<data.data.file_list.length;i++){
+                       if(data.data.file_list[i].type=="0100"){
+                           str0+='<tr><td><img style="width: 90%;height:300px;margin-left: 5px" src="'+HOST+data.data.file_list[i].path_url+ '"></td></tr>'
+                       }
+
+                       if(data.data.file_list[i].type=="0101"){
+                           str1+='<tr><td><img style="width: 90%;height:300px;margin-left: 5px" src="'+HOST+data.data.file_list[i].path_url+ '"></td></tr>'
+                       }
+                       if(data.data.file_list[i].type=="0102"){
+                           str2+='<tr><td><img style="width: 90%;height:300px;margin-left: 5px" src="'+HOST+data.data.file_list[i].path_url+ '"></td></tr>'
+                       }
+                       if(data.data.file_list[i].type=="0103"){
+                           str3+='<tr><td><img style="width: 90%;height:300px;margin-left: 5px" src="'+HOST+data.data.file_list[i].path_url+ '"></td></tr>'
+                       }
+                       if(data.data.file_list[i].type=="0104"){
+                           str4+='<tr><td><img style="width: 90%;height:300px;margin-left: 5px" src="'+HOST+data.data.file_list[i].path_url+ '"></td></tr>'
+                       }
+                       if(data.data.file_list[i].type=="0105"){
+                           str5+='<tr><td><img style="width: 90%;height:300px;margin-left: 5px" src="'+HOST+data.data.file_list[i].path_url+ '"></td></tr>'
+                       }
+                       if(data.data.file_list[i].type=="0200"){
+                           str6+='<tr><td><img style="width: 90%;height:300px;margin-left: 5px" src="'+HOST+data.data.file_list[i].path_url+ '"></td></tr>'
+                       }
+
+                       if(data.data.file_list[i].type=="0201"){
+                           str7+='<tr><td><img style="width: 90%;height:300px;margin-left: 5px" src="'+HOST+data.data.file_list[i].path_url+ '"></td></tr>'
+                       }
+                       if(data.data.file_list[i].type=="0202"){
+                           str8+='<tr><td><img style="width: 90%;height:300px;margin-left: 5px" src="'+HOST+data.data.file_list[i].path_url+ '"></td></tr>'
+                       }
+                       if(data.data.file_list[i].type=="0203"){
+                           str9+='<tr><td><img style="width: 90%;height:300px;margin-left: 5px" src="'+HOST+data.data.file_list[i].path_url+ '"></td></tr>'
+                       }
+
+                   }
+                   if(str0!=""){
+                       str0='<tr><td><p>医疗费用原始数据：</p></td></tr>'+str0;
+                   }
+                   if(str1!=""){
+                       str1='<tr><td><p>用药处方：</p></td></tr>'+str1;
+                   }
+                   if(str2!=""){
+                       str2='<tr><td><p>医疗费用明细清单：</p></td></tr>'+str2;
+                   }
+                   if(str3!=""){
+                       str3='<tr><td><p>病理/血液/影像检查报告：</p></td></tr>'+str3;
+                   }
+                   if(str4!=""){
+                       str4='<tr><td><p>门（急）诊病历：</p></td></tr>'+str4;
+                   }
+                   if(str5!=""){
+                       str5='<tr><td><p>门诊其他材料：</p></td></tr>'+str5;
+                   }
+                   if(str6!=""){
+                       str6='<tr><td><p>诊断证明：</p></td></tr>'+str6;
+                   }
+                   if(str7!=""){
+                       str7='<tr><td><p>医疗费用原始收据：</p></td></tr>'+str7;
+                   }
+                   if(str8!=""){
+                       str8='<tr><td><p>住院费用结算单及费用清单：</p></td></tr>'+str8;
+                   }
+                   if(str9!=""){
+                       str9='<tr><td><p>住院其他材料：</p></td></tr>'+str9;
+                   }
+                   document.getElementById("picture_list").innerHTML=str+str0+str1+str2+str3+str4+str5+str6+str7+str8+str9;
+               }
+
+                if(localStorage.getItem("type_canshu")==1){
+                    for(var i=0;i<data.data.file_list.length;i++){
+                        if(data.data.file_list[i].type=="1000"){
+                            str0+='<tr><td><img style="width: 90%;height:300px;margin-left: 5px" src="'+HOST+data.data.file_list[i].path_url+ '"></td></tr>'
+                        }
+
+                        if(data.data.file_list[i].type=="1001"){
+                            str1+='<tr><td><img style="width: 90%;height:300px;margin-left: 5px" src="'+HOST+data.data.file_list[i].path_url+ '"></td></tr>'
+                        }
+                        if(data.data.file_list[i].type=="1002"){
+                            str2+='<tr><td><img style="width: 90%;height:300px;margin-left: 5px" src="'+HOST+data.data.file_list[i].path_url+ '"></td></tr>'
+                        }
+
+
+
+                    }
+                    if(str0!=""){
+                        str0='<tr><td><p>费用原始收据：</p></td></tr>'+str0;
+                    }
+                    if(str1!=""){
+                        str1='<tr><td><p>费用明细清单：</p></td></tr>'+str1;
+                    }
+
+                    if(str2!=""){
+                        str2='<tr><td><p>其他材料：</p></td></tr>'+str2;
+                    }
+                    document.getElementById("picture_list").innerHTML=str+str0+str1+str2;
+                }
+            }
+
+
+          
+        }
+        else {
+            alert(data.desc);
+        }
+    }).fail(
+        function(){alert("无法链接网络!")});
+
+function wanshan() {
+     if(localStorage.getItem("type_canshu")==0){
+         window.location.href="test111.html"
+     }
+     else if(localStorage.getItem("type_canshu")==1){
+         window.localStorage.href="test22_2.html"
+     }
+
+}
+
+</script>
+</body>
+</html>

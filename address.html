@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <link href="jquery.mobile/jquery.mobile-1.4.5.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="jquery.mobile/jquery-1.12.2.min.js"></script>
+    <script type="text/javascript" src="jquery.mobile/jquery.mobile-1.4.5.js"></script>
+    <title>我的地址</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <script src="js/index.js"></script>
+</head>
+<style>
+    .ui-shadow-inset{
+        height: 30px;
+        width: 90%;
+        align:middle;
+    }
+</style>
+<style type="text/css">
+    /*自定义样式*/
+    body,html{
+        margin: 0;
+        padding: 0;
+    }
+    .select-value,.select-value2{
+        width: 80%;
+        height: 30px;
+        border:1px solid #ccc;
+    }
+    p{
+        margin:0;
+        padding:0;
+    }
+    .slide-wapper {
+        padding:20px;
+        overflow-y: scroll;
+        background: #eee;
+    }
+    .title{
+        padding-top:30px;
+        padding-bottom:10px;
+        color:#333;
+    }
+    .title2{
+        padding-top:20px;
+        font-size: 22px;
+    }
+
+</style>
+<body>
+
+    <!--导航栏-->
+    <div data-role="header"  >
+        <a data-ajax="false" href="personal_info.html">返回</a>
+        <h1>编辑地址</h1>
+    </div>
+
+    <table id="edit_address_body">
+        <tr>
+            <td >收件人</td>
+
+            <td style="padding-left: 0px" > <input  id="receiver_name" width="match_present"/></td>
+        </tr>
+
+        <tr>
+            <td>手机号</td>
+            <td  style="padding-left: 0px"><input id="receiver_phone"  width="match_present" /></td>
+        </tr>
+
+        <tr>
+            <td>所在地区</td>
+            <td style="padding-left: 0px" ><input type="text" class="select-value" id="receiver_address" value="点击选择城市"></td>
+        </tr>
+
+        <tr>
+            <td>详细信息</td>
+            <td  style="padding-left: 0px"><input  id="receiver_detail"  width="match_present"/></td>
+        </tr>
+
+        <tr>
+            <td>邮箱</td>
+            <td style="padding-left: 0px"><input  id="receiver_email"  width="match_present"/></td>
+        </tr>
+    </table>
+
+    <div id="address_button">
+       <button onclick="save_button()">修改信息</button>
+    </div>
+    <script  src="js/lib.js"></script>
+<script>
+    // 测试代码document.getElementById("receiver_detail").value="dasdgsfg"
+    _get('/app/user/address/', {
+        token:localStorage.getItem("token"),
+    }).then(function(data) {
+        if(data.code==0) {
+            // $('#id_person').innerHTML(data.user_id);
+            document.getElementById("receiver_name").value=data.data.name;
+            // $('#nickname').val(data.nickname);
+            document.getElementById("receiver_phone").value = data.data.phone;
+            // $('#company_code').val(data.company_code);
+            document.getElementById("receiver_address").value = data.data.address;
+            // $('#company_name').val(data.company_name);
+            document.getElementById("receiver_detail").value = data.data.address_detail;
+            // $('#email').val(data.email);
+            document.getElementById("receiver_email").value= data.data.email;
+        }
+    }).fail(function(){
+        alert("无法链接网络!")
+    });
+    //document.getElementById("id_person").innerHTML="dfadsfs"+"123213".
+    function save_button() {
+
+        _post('/app/user/address/', {
+            receiver_name: document.getElementById("receiver_name").value,
+            receiver_phone:  document.getElementById("receiver_phone").value,
+            receiver_address: document.getElementById("receiver_address").value,
+            receiver_detail: document.getElementById("receiver_detail").value,
+            receiver_email: document.getElementById("receiver_email").value,
+        }).then(function(data) {
+              if(data.code==0){
+                  alert("修改成功！")
+                  window.setTimeout("window.location.href='personal_info.html'",700)
+
+              }
+              else{
+                  alert(data.desc)
+              }
+        }).fail(
+
+            function(data){alert("无法连接网络！")
+                //alert(data.code)
+            } );
+
+
+
+    }
+</script>
+    <script src="js/index.js"></script>
+</body>
+</html>

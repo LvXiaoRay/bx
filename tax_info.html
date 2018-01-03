@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link href="jquery.mobile/jquery.mobile-1.4.5.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="jquery.mobile/jquery-1.12.2.min.js"></script>
+    <script type="text/javascript" src="jquery.mobile/jquery.mobile-1.4.5.js"></script>
+    <title>涉税信息</title>
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+<body>
+
+    <!--导航栏-->
+    <div data-role="header"  >
+       <a data-ajax="false" href="personal_info.html">返回</a>
+       <h1>纳税居民身份声明</h1>
+    </div>
+
+    <table id="tax_type_1">
+        <tr>
+
+            <td  id="shuishou_msg"></td>
+        </tr>
+    </table>
+    <button id="change_tax" onclick="tax_change()">点击修改</button>
+
+
+<script  src="js/lib.js"></script>
+<script>
+
+    _get('/app/user/sheshui/', {
+
+    }).then(function(data) {
+        if(data.code==0) {
+           // alert(data.data.she_shui)
+            localStorage.setItem("shui_msg",data.data.she_shui);
+            //alert(localStorage.getItem("shui_msg"))
+             if(data.data.she_shui==true)
+             {document.getElementById("shuishou_msg").innerHTML="既是中国税收居民，又是其他国家（地区）税收居民"}
+             else if(data.data.she_shui==false){
+
+                 document.getElementById("shuishou_msg").innerHTML="仅为中国税收居民"
+             }
+        }
+        else{
+
+            alert(data.desc)
+        }
+    }).fail(function(){
+        alert('无法链接网络！')});
+
+    function tax_change() {
+        if(localStorage.getItem("shui_msg")=="true"){
+            _post('/app/user/sheshui/', {
+                she_shui:false,
+            }).then(function(data) {
+                // alert(data.code);
+                //alert(data.data.user_id)
+                //alert(data.user_id)
+                if(data.code==0) {
+                    alert("修改成功！")
+                    window.location.href="tax_info.html"
+                }
+                else {
+                    //alert(data.code);
+                    alert(data.desc)
+                }
+            }).fail(
+                function(){alert("无法链接网络!")});
+        }
+        else if(localStorage.getItem("shui_msg")=="false") {
+            _post('/app/user/sheshui/', {
+                she_shui:true,
+            }).then(function(data) {
+                // alert(data.code);
+                //alert(data.data.user_id)
+                //alert(data.user_id)
+                if(data.code==0) {
+                    alert("修改成功！")
+                    window.location.href="tax_info.html"
+                }
+                else {
+                    //alert(data.code);
+                    alert(data.desc)
+                }
+            }).fail(
+                function(){alert("无法链接网络!")});
+        }
+
+    }
+
+</script>
+</body>
+</html>

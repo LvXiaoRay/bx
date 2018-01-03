@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link href="jquery.mobile/jquery.mobile-1.4.5.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="jquery.mobile/jquery-1.12.2.min.js"></script>
+    <script type="text/javascript" src="jquery.mobile/jquery.mobile-1.4.5.js"></script>
+    <title>个人信息</title>
+    <script src="js/simpleAlert.js"></script>
+    <link rel="stylesheet" href="css/simpleAlert.css">
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+<body style="text-align: center">
+
+    <!--导航栏-->
+    <div data-role="header" data-position="fixed">
+        <a data-ajax="false" href="shouye.html">返回</a>
+        <h1>个人信息</h1>
+    </div>
+
+    <!--<div id="personal_avatar">-->
+
+    <!--</div>-->
+
+    <ul data-role="listview" data-inset="true" id="personal_info_avatar">
+        <li>
+
+            <div style="height: 60px"><img id="touxiang" src="images/boy.png" style="text-align: center;height: 100%;margin-left: 40%"></div>
+
+        </li>
+
+
+        <li>
+                <p id="id_person" style="font-size:15px;data-inline:true">我的ID：</p>
+        </li>
+        <li><p id="nickname" style="font-size:15px;data-inline:true">昵称：</p></li>
+        <li><p id="company_name" style="font-size:15px;data-inline:true">公司名称：</p></li>
+        <li><p id="company_code" style="font-size:15px;data-inline:true">企业代码：</p></li>
+
+        <li><a data-ajax="false" href="id_password.html">密码修改</a></li>
+        <!--身份信息页面-->
+        <li><a data-ajax="false" href="id_info.html">身份信息</a></li>
+
+        <li><a data-ajax="false" href="frequent_contacts.html">常用联系人</a></li>
+    <!--我的地址页面-->
+
+        <li><a data-ajax="false" href="address.html">我的地址</a></li>
+
+        <!--涉税信息-->
+
+        <li><a data-ajax="false" href="tax_info.html">涉税信息</a></li>
+    </ul>
+    <button style="margin: auto;margin-top: 5px" onclick="exit()">退出登录</button>
+    <script src="js/lib.js"></script>
+<script>
+    _get('/app/user/info/', {
+
+    }).then(function(data) {
+       // alert(data.code);
+        //alert(data.data.user_id)
+        //alert(data.user_id)
+        if(data.code==0) {
+            // $('#id_person').innerHTML(data.user_id);
+            document.getElementById("id_person").innerHTML = "我的ID：" + data.data.username;
+            // $('#nickname').val(data.nickname);
+            document.getElementById("nickname").innerHTML = "昵称：" + data.data.nickname;
+            // $('#company_code').val(data.company_code);
+            if(data.data.is_id_finished){
+                document.getElementById("company_code").innerHTML = "个人信息是否完整：是";
+
+            }
+          else{
+                document.getElementById("company_code").innerHTML = "个人信息是否完整：否";
+            }
+           // document.getElementById("company_code").innerHTML = "个人信息是否完整：" + data.data.is_id_finished;
+            // $('#company_name').val(data.company_name);
+            document.getElementById("company_name").innerHTML = "公司名称：" + data.data.company_name;
+            // $('#email').val(data.email);
+
+        }
+        else {
+            alert(data.desc);
+        }
+    }).fail(
+        function(){alert("无法链接网络!")});
+
+    //document.getElementById("id_person").innerHTML="dfadsfs"+"123213"
+</script>
+<script>
+    function exit() {
+
+        var dblChoseAlert = simpleAlert({
+
+            "content": "是否退出登陆？",
+            "buttons": {
+                "取消": function () {
+
+                    dblChoseAlert.close()
+                },
+
+                "确定": function () {
+
+                localStorage.clear();
+                window.location.href="Login.html"
+
+                },
+
+            }
+        })
+    }
+</script>
+</body>
+</html>
